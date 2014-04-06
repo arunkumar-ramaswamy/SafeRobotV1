@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypes">
+      <diagramType
+            id="org.saferobots.ssml.graphicaleditors.ssmldiagramType"
+            name="org.saferobots.ssml.graphicaleditors.ssmldiagramType"
+            type="org.saferobots.ssml.graphicaleditors.ssmldiagramType">
+      </diagramType>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypeProviders">
+      <diagramTypeProvider
+            class="org.saferobots.ssml.graphicaleditors.SsmlDiagramTypeProvider"
+            context="org.eclipse.graphiti.ui.diagramEditor"
+            id="org.saferobots.ssml.graphicaleditors.ssmldiagramTypeProvider"
+            name="org.saferobots.ssml.graphicaleditors.ssmldiagramTypeProvider">
+         <diagramType
+               id="org.saferobots.ssml.graphicaleditors.ssmldiagramType">
+         </diagramType>
+      </diagramTypeProvider>
+   </extension>
+
+</plugin>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated ssml -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.saferobots.ssml.metamodel.ssml.presentation.SsmlModelWizardID"
+            name="%_UI_SsmlModelWizard_label"
+            class="org.saferobots.ssml.metamodel.ssml.presentation.SsmlModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/SsmlModelFile.gif">
+         <description>%_UI_SsmlModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated ssml -->
+      <editor
+            id="org.saferobots.ssml.metamodel.ssml.presentation.SsmlEditorID"
+            name="%_UI_SsmlEditor_label"
+            icon="icons/full/obj16/SsmlModelFile.gif"
+            extensions="ssml"
+            class="org.saferobots.ssml.metamodel.ssml.presentation.SsmlEditor"
+            contributorClass="org.saferobots.ssml.metamodel.ssml.presentation.SsmlActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

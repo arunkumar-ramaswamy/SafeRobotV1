@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.saferobots.ssml.metamodel/src" modelPluginID="org.saferobots.ssml.metamodel"
+    modelName="Ssml" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>ssml.ecore</foreignModel>
+  <genPackages prefix="Ssml" basePackage="org.saferobots.ssml.metamodel" disposableProviderFactory="true"
+      ecorePackage="ssml.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ssml.ecore#//port_type">
+      <genEnumLiterals ecoreEnumLiteral="ssml.ecore#//port_type/in"/>
+      <genEnumLiterals ecoreEnumLiteral="ssml.ecore#//port_type/out"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ssml.ecore#//gate_type">
+      <genEnumLiterals ecoreEnumLiteral="ssml.ecore#//gate_type/splitter"/>
+      <genEnumLiterals ecoreEnumLiteral="ssml.ecore#//gate_type/merger"/>
+      <genEnumLiterals ecoreEnumLiteral="ssml.ecore#//gate_type/selector"/>
+      <genEnumLiterals ecoreEnumLiteral="ssml.ecore#//gate_type/synchronizer"/>
+      <genEnumLiterals ecoreEnumLiteral="ssml.ecore#//gate_type/delay"/>
+      <genEnumLiterals ecoreEnumLiteral="ssml.ecore#//gate_type/user_defined"/>
+    </genEnums>
+    <genClasses ecoreClass="ssml.ecore#//System">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ssml.ecore#//System/gates"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ssml.ecore#//System/connectors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ssml.ecore#//System/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ssml.ecore#//Dispatch_Gate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ssml.ecore#//Dispatch_Gate/ports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ssml.ecore#//Dispatch_Gate/policy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ssml.ecore#//Dispatch_Gate/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ssml.ecore#//Dispatch_Gate/type"/>
+    </genClasses>
+    <genClasses ecoreClass="ssml.ecore#//Connector">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ssml.ecore#//Connector/contains_system"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ssml.ecore#//Connector/in"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ssml.ecore#//Connector/out"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ssml.ecore#//Connector/has_nfp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ssml.ecore#//Connector/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ssml.ecore#//Dispatch_Policy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ssml.ecore#//Dispatch_Policy/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ssml.ecore#//Port">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ssml.ecore#//Port/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ssml.ecore#//Port/type"/>
+    </genClasses>
+    <genClasses ecoreClass="ssml.ecore#//NFP">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ssml.ecore#//NFP/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
