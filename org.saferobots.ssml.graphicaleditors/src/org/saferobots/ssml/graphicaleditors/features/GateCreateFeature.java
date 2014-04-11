@@ -54,13 +54,14 @@ public class GateCreateFeature extends AbstractCreateFeature {
 			break;
 		}
 		newGate.setType(gtype);
+		newGate.setName(g_type);
 		
 	   org.saferobots.ssml.metamodel.ssml.System system = (System) Utilities.getRootDomainObject(getDiagram());
 	   system.getGates().add(newGate);
 	    
-		addGraphicalRepresentation(context,newGate);
+	   addGraphicalRepresentation(context,newGate);
 		
-		return new Object[] {newGate};
+	   return new Object[] {newGate};
 	}
 
 }

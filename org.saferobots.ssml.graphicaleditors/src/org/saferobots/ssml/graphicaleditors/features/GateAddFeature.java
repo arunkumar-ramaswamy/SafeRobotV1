@@ -76,6 +76,7 @@ public class GateAddFeature extends AbstractAddShapeFeature {
 		    		port_width, 0, gate_width, gate_height);
 	    }
 	    
+	    link(containerShape,addedgate);
 		return containerShape;
 	}
 

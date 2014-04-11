@@ -21,5 +21,37 @@
          </diagramType>
       </diagramTypeProvider>
    </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="org.saferobots.ssml.graphicaleditors.ssmldiagramType.PropertyContributor">
+         <propertyCategory
+               category="Graphiti">
+         </propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="org.saferobots.ssml.graphicaleditors.ssmldiagramType.PropertyContributor">
+         <propertyTab
+               category="Graphiti"
+               id="org.saferobots.ssml.graphicaleditors.main.tab"
+               label="Main">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="org.saferobots.ssml.graphicaleditors.ssmldiagramType.PropertyContributor">
+         <propertySection
+               class="org.saferobots.ssml.graphicaleditors.property.GateSection"
+               filter="org.saferobots.ssml.graphicaleditors.property.GateFilter"
+               id="org.saferobots.ssml.graphicaleditors.main.tab.gate"
+               tab="org.saferobots.ssml.graphicaleditors.main.tab">
+         </propertySection>
+      </propertySections>
+   </extension>
 
 </plugin>
