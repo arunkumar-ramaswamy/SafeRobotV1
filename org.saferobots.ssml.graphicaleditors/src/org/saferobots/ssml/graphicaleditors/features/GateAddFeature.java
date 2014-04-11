@@ -48,8 +48,8 @@ public class GateAddFeature extends AbstractAddShapeFeature {
 		ContainerShape containerShape = peCreateService.createContainerShape(
                 context.getTargetContainer(), true);
 		
-        int cont_width=75;
-        int cont_height=130;
+        int cont_width=65;
+        int cont_height=100;
 		int gate_width = 25;
 	 	int gate_height = 100; 
 	 	int port_width = 20;
@@ -65,8 +65,7 @@ public class GateAddFeature extends AbstractAddShapeFeature {
             context.getX(), context.getY(), cont_width, cont_height);  
           }
     
-	    //gate
-	    
+	    //gate	    
 	    {
 	    	Shape shape = peCreateService.createShape(containerShape,true);
 	    	Rectangle rectangle = gaService.createRectangle(shape);
@@ -74,6 +73,7 @@ public class GateAddFeature extends AbstractAddShapeFeature {
 	    	rectangle.setForeground(manageColor(GATE_FOREGROUND));
 		    gaService.setLocationAndSize(rectangle,
 		    		port_width, 0, gate_width, gate_height);
+		    link(shape,addedgate);
 	    }
 	    
 	    link(containerShape,addedgate);

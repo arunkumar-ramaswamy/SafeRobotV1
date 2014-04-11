@@ -3,10 +3,17 @@ package org.saferobots.ssml.graphicaleditors;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
+import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.ICustomContext;
+import org.eclipse.graphiti.features.context.ILayoutContext;
+import org.eclipse.graphiti.features.custom.ICustomFeature;
+import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 import org.saferobots.ssml.graphicaleditors.features.GateAddFeature;
 import org.saferobots.ssml.graphicaleditors.features.GateCreateFeature;
+import org.saferobots.ssml.graphicaleditors.features.GateLayoutFeature;
+import org.saferobots.ssml.graphicaleditors.features.PortAddFeature;
 import org.saferobots.ssml.graphicaleditors.features.SystemAddFeature;
 import org.saferobots.ssml.graphicaleditors.features.SystemCreateFeature;
 import org.saferobots.ssml.metamodel.ssml.Dispatch_Gate;
@@ -42,6 +49,24 @@ public class SsmlFeatureProvider extends DefaultFeatureProvider {
 				new GateCreateFeature(this,"Delay","Creates Delay Gate"),
 				new GateCreateFeature(this,"User_Defined","Creates User_Defined Gate")};
 
+	}
+	
+	@Override
+	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
+		return new ICustomFeature[] 
+		          {
+					new PortAddFeature(this)
+		          };
+	}
+
+	@Override
+	public ILayoutFeature getLayoutFeature(ILayoutContext context) {
+		 PictogramElement pictogramElement = context.getPictogramElement();
+		    Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+		    if (bo instanceof Dispatch_Gate) {
+		        return new GateLayoutFeature(this);
+		    }
+		    return super.getLayoutFeature(context);
 	}
 
 }

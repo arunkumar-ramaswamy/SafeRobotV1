@@ -19,6 +19,9 @@
          <diagramType
                id="org.saferobots.ssml.graphicaleditors.ssmldiagramType">
          </diagramType>
+         <imageProvider
+               id="org.saferobots.ssml.graphicaleditors.SsmlImageProvider">
+         </imageProvider>
       </diagramTypeProvider>
    </extension>
    <extension
@@ -52,6 +55,13 @@
                tab="org.saferobots.ssml.graphicaleditors.main.tab">
          </propertySection>
       </propertySections>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.imageProviders">
+      <imageProvider
+            class="org.saferobots.ssml.graphicaleditors.SsmlImageProvider"
+            id="org.saferobots.ssml.graphicaleditors.SsmlImageProvider">
+      </imageProvider>
    </extension>
 
 </plugin>
