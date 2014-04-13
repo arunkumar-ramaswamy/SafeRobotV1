@@ -2,6 +2,7 @@ package org.saferobots.ssml.graphicaleditors;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
+import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
@@ -10,12 +11,15 @@ import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
+import org.saferobots.ssml.graphicaleditors.features.ConnectorAddFeature;
+import org.saferobots.ssml.graphicaleditors.features.ConnectorCreateFeature;
 import org.saferobots.ssml.graphicaleditors.features.GateAddFeature;
 import org.saferobots.ssml.graphicaleditors.features.GateCreateFeature;
 import org.saferobots.ssml.graphicaleditors.features.GateLayoutFeature;
 import org.saferobots.ssml.graphicaleditors.features.PortAddFeature;
 import org.saferobots.ssml.graphicaleditors.features.SystemAddFeature;
 import org.saferobots.ssml.graphicaleditors.features.SystemCreateFeature;
+import org.saferobots.ssml.metamodel.ssml.Connector;
 import org.saferobots.ssml.metamodel.ssml.Dispatch_Gate;
 import org.saferobots.ssml.metamodel.ssml.System;
 
@@ -34,6 +38,10 @@ public class SsmlFeatureProvider extends DefaultFeatureProvider {
 		else if (context.getNewObject() instanceof System)
 		{
 			return new SystemAddFeature(this);
+		}
+		else if(context.getNewObject() instanceof Connector)
+		{
+			return new ConnectorAddFeature(this);
 		}
 		return super.getAddFeature(context);
 	}
@@ -68,5 +76,13 @@ public class SsmlFeatureProvider extends DefaultFeatureProvider {
 		    }
 		    return super.getLayoutFeature(context);
 	}
+
+	@Override
+	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
+	    return new ICreateConnectionFeature[] { 
+	            new ConnectorCreateFeature(this) };
+	}
+	
+	
 
 }

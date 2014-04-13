@@ -120,7 +120,8 @@ public class GateAddFeature extends AbstractAddShapeFeature {
 	    	rectangle.setForeground(manageColor(GATE_FOREGROUND));
 		    gaService.setLocationAndSize(rectangle,
 		    		port_xpos, port_ypos, port_width, port_width);
-		    link(shape,addedgate.getPorts().get(i));		    
+		    link(shape,addedgate.getPorts().get(i));		
+		    peCreateService.createChopboxAnchor(shape);
 	    }
 	    
 	    link(containerShape,addedgate);
