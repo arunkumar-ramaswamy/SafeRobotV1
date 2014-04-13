@@ -14,6 +14,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 import org.saferobots.ssml.metamodel.ssml.Dispatch_Gate;
+import org.saferobots.ssml.metamodel.ssml.port_type;
 
 public class GateAddFeature extends AbstractAddShapeFeature {
 	
@@ -74,6 +75,52 @@ public class GateAddFeature extends AbstractAddShapeFeature {
 		    gaService.setLocationAndSize(rectangle,
 		    		port_width, 0, gate_width, gate_height);
 		    link(shape,addedgate);
+	    }
+	    
+	    //Setting the x and y position for ports
+	    //in port in left side and out port in right side
+	    int port_xpos=0;
+	    int port_ypos=0;
+	    int port_ypos_in_count = 0;
+	    int port_ypos_out_count = 0;
+	    for (int i = 0; i < addedgate.getPorts().size(); i++) {
+	    	if(addedgate.getPorts().get(i).getType()==port_type.IN)
+	    	{
+	    		port_ypos_in_count++;
+	    	}
+	    	else
+	    	{
+	    		port_ypos_out_count++;
+	    	}	
+	    }
+	    int port_ypos_div_in=gate_height/(1+port_ypos_in_count);
+	    int port_ypos_div_out=gate_height/(1+port_ypos_out_count);
+	    //reseting the counter for in and out ports
+	    port_ypos_in_count=0;
+	    port_ypos_out_count=0;
+	    for (int i = 0; i < addedgate.getPorts().size(); i++) {
+	    	int port_in_count=0, port_out_count=0;
+	    	if(addedgate.getPorts().get(i).getType()==port_type.IN)
+	    	{
+	    		port_in_count++;
+	    		port_xpos = 0;
+	    		port_ypos = ++port_ypos_in_count*port_ypos_div_in-port_width/2;
+	    	}
+	    	else
+	    	{
+	    		port_out_count++;
+	    		port_xpos = port_width+gate_width;
+	    		port_ypos = ++port_ypos_out_count*port_ypos_div_out-port_width/2;
+	    	}	
+
+		   //adding ports
+	    	Shape shape = peCreateService.createShape(containerShape,true);
+	    	Rectangle rectangle = gaService.createRectangle(shape);
+	    	rectangle.setBackground(manageColor(GATE_BACKGROUND));
+	    	rectangle.setForeground(manageColor(GATE_FOREGROUND));
+		    gaService.setLocationAndSize(rectangle,
+		    		port_xpos, port_ypos, port_width, port_width);
+		    link(shape,addedgate.getPorts().get(i));		    
 	    }
 	    
 	    link(containerShape,addedgate);
