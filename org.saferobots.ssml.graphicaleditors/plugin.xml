@@ -54,6 +54,12 @@
                id="org.saferobots.ssml.graphicaleditors.main.tab.gate"
                tab="org.saferobots.ssml.graphicaleditors.main.tab">
          </propertySection>
+         <propertySection
+               class="org.saferobots.ssml.graphicaleditors.property.ConnectorSection"
+               filter="org.saferobots.ssml.graphicaleditors.property.ConnectorFilter"
+               id="org.saferobots.ssml.graphicaleditors.main.tab.connector"
+               tab="org.saferobots.ssml.graphicaleditors.main.tab">
+         </propertySection>
       </propertySections>
    </extension>
    <extension
