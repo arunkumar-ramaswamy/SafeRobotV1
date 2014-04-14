@@ -28,6 +28,22 @@ public class SsmlDiagramTypeProvider extends AbstractDiagramTypeProvider
         return toolBehaviorProviders;
 	}
 
+	@Override
+	public boolean isAutoUpdateAtRuntime() {
+		return true;
+	}
+
+	@Override
+	public boolean isAutoUpdateAtRuntimeWhenEditorIsSaved() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAutoUpdateAtStartup() {
+		return true;
+	}
+
 
 }
 	
