@@ -60,6 +60,12 @@
                id="org.saferobots.ssml.graphicaleditors.main.tab.connector"
                tab="org.saferobots.ssml.graphicaleditors.main.tab">
          </propertySection>
+         <propertySection
+               class="org.saferobots.ssml.graphicaleditors.property.SystemSection"
+               filter="org.saferobots.ssml.graphicaleditors.property.SystemFilter"
+               id="org.saferobots.ssml.graphicaleditors.main.tab.system"
+               tab="org.saferobots.ssml.graphicaleditors.main.tab">
+         </propertySection>
       </propertySections>
    </extension>
    <extension
