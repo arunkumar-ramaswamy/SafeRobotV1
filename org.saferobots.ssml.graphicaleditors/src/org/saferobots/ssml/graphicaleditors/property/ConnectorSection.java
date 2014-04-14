@@ -3,6 +3,10 @@ package org.saferobots.ssml.graphicaleditors.property;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.graphiti.features.IFeature;
+import org.eclipse.graphiti.features.context.IContext;
+import org.eclipse.graphiti.features.context.impl.CustomContext;
+import org.eclipse.graphiti.features.impl.AbstractFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
@@ -36,6 +40,7 @@ public class ConnectorSection extends GFPropertySection implements
         FormData data;
         
         nameText = factory.createText(composite, "");
+	
         data = new FormData();
         data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
         data.right = new FormAttachment(100, 0);
@@ -77,21 +82,46 @@ public class ConnectorSection extends GFPropertySection implements
     
 	private ModifyListener connectornamelistener = new ModifyListener(){
 
-		public void modifyText (ModifyEvent arg0){
-			// set the new name for the Intention
-			PictogramElement pe = getSelectedPictogramElement();
-			Connector bo = (Connector)Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-			//bo.setName(nameText.getText());
-			/*TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(bo);	
-			editingDomain.getCommandStack().execute(
-					new RecordingCommand(editingDomain) {
-						protected void doExecute() {
-							bo.setName(nameText.getText());
-						}
-					}
-			);*/
-			refresh();
+		@Override
+		public void modifyText(ModifyEvent e) {
+			String value = nameText.getText();
+			if (value == null) {
+				value = "";//$NON-NLS-1$
 			}
-		};
+			PictogramElement pe = getSelectedPictogramElement();
+			if (pe != null) {
+				Object bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+				// the filter assured, that it is a EClass
+				if (bo == null)
+					return;
+				String name = ((Connector) bo).getName();
+				if (value.equals(name))
+					return;
+			}
+			final String typedValue = value;
+			IFeature feature = new AbstractFeature(getDiagramTypeProvider().getFeatureProvider()) {
+					
+				@Override
+				public void execute(IContext context) {
+					PictogramElement pe = getSelectedPictogramElement();
+					if (pe != null) {
+						Object bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+						// the filter assured, that it is a EClass
+						if (bo == null)
+							return;
+						Connector connector = (Connector) bo;
+						connector.setName(typedValue);
+					}
+				}
+				
+				@Override
+				public boolean canExecute(IContext context) {
+					return true;
+				}
+			};
+			CustomContext context = new CustomContext();
+			execute(feature, context);
+		}
+	};
 
 }
